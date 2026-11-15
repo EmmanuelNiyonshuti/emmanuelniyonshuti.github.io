@@ -1,4 +1,4 @@
-name: Deploy Zola site to GitHub Pages
+name: Deploy NIYONSHUTI Emmanuel blog to GitHub Pages
 
 on:
   push:
