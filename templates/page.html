@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+
+{% block content %}
+  <article class="prose">
+    <header class="page-header">
+      <p class="meta">
+        {% if page.date %}{{ page.date | date(format="%B %e, %Y") }}{% endif %}
+        {% if page.taxonomies.categories %}
+          {% if page.date %} · {% endif %}{{ page.taxonomies.categories | join(sep=", ") }}
+        {% endif %}
+      </p>
+    </header>
+    {{ page.content | safe }}
+  </article>
+{% endblock content %}

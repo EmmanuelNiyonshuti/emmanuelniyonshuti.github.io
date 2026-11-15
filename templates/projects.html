@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} · {{ config.title }}{% endblock title %}
+
+{% block content %}
+   <p>Below are some of the <a href="https://en.wikipedia.org/wiki/Open-source_software" target="_blank"  style="color: blue;">opensource software</a> projects I made or contribute(d) to:</p>
+  {{ section.content | safe }}
+  <p><i>...you can check my <a href="https://github.com/EmmanuelNiyonshuti" style="color: blue;">github</a></i></p>
+{% endblock content %}

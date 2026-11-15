@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} · {{ config.title }}{% endblock title %}
+
+{% block content %}
+  <header class="page-header">
+  </header>
+  {% set_global current_year = 0 %}
+  {% set_global i = 1 %}
+  {% for page in section.pages | sort(attribute="date") | reverse %}
+    {% if page.year %}
+      {% if page.year != current_year %}
+        <h3 class="year-heading">{{ page.year }}</h3>
+        {% set_global current_year = page.year %}
+      {% endif %}
+      <article>
+        <p>#{{i}} <a href="{{ page.permalink }}">{{ page.title }}</a></p> 
+      </article>
+      {% set_global i = i + 1 %}
+    {% endif %}
+  {% endfor %}
+  {% set has_undated_pages = false %}
+  {% for page in section.pages %}
+    {% if not page.year %}{% set_global has_undated_pages = true %}{% endif %}
+  {% endfor %}
+  {% if has_undated_pages %}
+    <h3 class="year-heading">no date</h3>
+    {% for page in section.pages %}
+      {% if not page.year %}
+        <article>
+          <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+          {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+        </article>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if not section.pages %}<p>Nothing's in here!</p>{% endif %}
+{% endblock content %}

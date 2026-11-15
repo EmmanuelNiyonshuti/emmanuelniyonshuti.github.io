@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default(value='en') }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ description | default(value=config.description) }}">
+  <title>{% block title %}{{ title | default(value=config.title) }}{% endblock title %}</title>
+  <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }} feed" href="{{ get_url(path='atom.xml') }}">
+</head>
+<body>
+  <header class="site-header">
+      <a class="site-title" href="{{ get_url(path='') }}" style="color: blue;">about</a>
+     <!-- navigations  -->
+    <nav aria-label="Main navigation">
+      <a href="{{ get_url(path='blog/') }}">blog</a>
+      <a href="{{ get_url(path='projects/') }}">projects</a>
+      <a href="{{ get_url(path='til/') }}">til</a>
+      <a href="{{ get_url(path='atom.xml') }}">feed</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock content %}
+  </main>
+  <footer>
+    <p>© {{ now() | date(format="%Y") }} {{ config.extra.author }}
+      <a href="https://github.com/EmmanuelNiyonshuti/emmanuelniyonshuti.github.io" style="color: blue;">source code</a>
+    </p>
+  </footer>
+</body>
+</html>

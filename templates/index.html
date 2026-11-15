@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ config.title }}{% endblock title %}
+
+{% block content %}
+  <section class="profile">
+    <img class="profile-photo" src="{{ get_url(path='images/profile.jpg') }}" alt="ok computer!">
+    <div>
+      <h3>{{ section.title }}</h3>
+      <!-- {{ section.content | safe }} will write this as markdown later?--> 
+        <p>Email: <span style="color: blue;">emmanuelniyonshuti13 at gmail domain</p>
+        <p>Pronouns: he/him/his</p>
+        <p><a href="https://github.com/EmmanuelNiyonshuti" style="color: blue;">GitHub</a></p>
+        <p> I am also on:
+          <a href="https://x.com/e_mmanuel_n" style="color: blue;">Twitter/X</a>
+          and <a href="https://mastodon.social/@emmanuelniyonshuti" style="color: blue;"> Mastodon</a>
+    </div>
+  </section>
+  <!-- <p><i>
+    Will add somethings here later!
+  </i></p> -->
+  <section aria-labelledby="recent-writing">
+    <h3 id="recent-writing" style="color: blue;">recent posts</h3>
+    {% set blog = get_section(path="blog/_index.md") %}
+    {% set_global i = 1 %}
+    {% for page in blog.pages | sort(attribute="date") | reverse %}
+      {% if page.year and i < 3 %}
+        <article>
+          <p> #{{i}} <a href="{{ page.permalink }}">{{ page.title }}</a></p>
+        </article>
+        {% set_global i = i + 1 %}
+      {% endif %}
+    {% endfor %}
+    <p><a href="{{ get_url(path='blog/') }}">...more</a></p>
+  </section>
+{% endblock content %}
