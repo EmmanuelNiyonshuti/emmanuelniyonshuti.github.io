@@ -14,7 +14,7 @@
         {% set_global current_year = page.year %}
       {% endif %}
       <article>
-        <p>#{{i}} <a href="{{ page.permalink }}">{{ page.title }}</a></p> 
+        <p><a href="{{ page.permalink }}"><span style="color: blue;"> #{{i}}</span> {{ page.title }}</a></p> 
       </article>
       {% set_global i = i + 1 %}
     {% endif %}
